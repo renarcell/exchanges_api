@@ -1,5 +1,5 @@
 from .ExchangeInterface import ExchangeInterface
-from .utils import get, post
+from .con_utils import get, post
 
 
 class MexcExchange(ExchangeInterface):

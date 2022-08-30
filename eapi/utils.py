@@ -1,16 +1,8 @@
-import requests
-from requests.exceptions import RequestException
+from .FtxExchange import FtxExchange
+from .MexcExchange import MexcExchange
 
-
-def get(url, params=None):
-    res = requests.get(url, params=params)
-    if not res:
-        raise RequestException(f'Response code:{res.status_code}')
-    return res
-
-
-def post(url, data=None):
-    res = requests.get(url, data=data)
-    if not res:
-        raise RequestException(f'Response code:{res.status_code}')
-    return res
+def get_all_exchanges():
+    return [
+        FtxExchange(),
+        MexcExchange(),
+    ]
