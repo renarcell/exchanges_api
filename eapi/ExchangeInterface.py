@@ -14,7 +14,15 @@ class ExchangeInterface(metaclass=ABCMeta):
     @abstractmethod
     def get_markets(self):
         """Return all exchange pairs"""
-        return {"success": True, "result": [{"name": "TONCOIN/USD"}]}
+        return {"success": True, "result": [
+            {
+                "name": "TONCOIN/USD",
+                "baseCurrency": "TONCOIN",
+                "quoteCurrency": "USD",
+                "ask": 3949.25,
+                "bid": 3949,
+            }
+        ]}
 
     @abstractmethod
     def get_single_market(self, pair_name):

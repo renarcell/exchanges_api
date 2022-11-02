@@ -1,10 +1,11 @@
 from .ExchangeInterface import ExchangeInterface
-from .con_utils import get, post
+from .con_utils import get, post, get_json
+from .utils import BaseUrl, check_data, delete_excess_fields
 
 
 class MexcExchange(ExchangeInterface):
     exchange_name = 'MEXC'
-    _base_url = 'https://www.mexc.com'
+    _base_url = BaseUrl('https://www.mexc.com')
 
     def _transform_spot(self, data):
         pass
@@ -27,8 +28,8 @@ class MexcExchange(ExchangeInterface):
 
         res = {
             "success": obj['code'] == 200,
+            "result": list(filter(f, map(m, temp_data))),
         }
-        res["result"] = list(filter(f, map(m, temp_data)))
         return res
 
     def get_markets(self):
@@ -38,8 +39,11 @@ class MexcExchange(ExchangeInterface):
         get(f'{self._base_url}/markets')
 
     def get_spot_markets(self):
-        data = get(f'{self._base_url}/open/api/v2/market/ticker').json()
-        return self._transform_market_ticker(data)
+        data = get_json(_base_url + '/open/api/v2/market/ticker')
+        check_data(data)
+        data = self._transform_market_ticker(data)
+        check_data(data)
+        return data
 
     def get_single_market(self, pair_name):
         get(f'{self._base_url}/markets/{pair_name}')

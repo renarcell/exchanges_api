@@ -1,2 +1,1 @@
 requests
-git+https://github.com/renarcell/exchanges_api.git

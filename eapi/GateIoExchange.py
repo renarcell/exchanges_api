@@ -1,5 +1,6 @@
 from .ExchangeInterface import ExchangeInterface
 from .con_utils import get, post
+from .utils import BaseUrl, check_data, delete_excess_fields
 
 
 class GateIoExchange(ExchangeInterface):
@@ -28,7 +29,10 @@ class GateIoExchange(ExchangeInterface):
                 return c
 
             def f(item):
-                return item is not None and item["quoteCurrency"].lower() == "usd" or item["quoteCurrency"].lower() == "usdt"
+                return item is not None \
+                       and (item["quoteCurrency"].lower() == "usd"
+                            or item["quoteCurrency"].lower() == "usdt") \
+                       and item["bid"] != "" and item["ask"] != ""
 
             res = {
                 "success": True,
