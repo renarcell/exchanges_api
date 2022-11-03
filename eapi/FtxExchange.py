@@ -14,7 +14,7 @@ class FtxExchange(ExchangeInterface):
         get(_base_url + 'markets')
 
     def get_spot_markets(self):
-        data = get_json(_base_url + 'markets')
+        data = get_json(self._base_url + 'markets')
         check_data(data)
         data = {
             "success": data["success"],

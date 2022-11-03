@@ -39,7 +39,7 @@ class MexcExchange(ExchangeInterface):
         get(f'{self._base_url}/markets')
 
     def get_spot_markets(self):
-        data = get_json(_base_url + '/open/api/v2/market/ticker')
+        data = get_json(self._base_url + '/open/api/v2/market/ticker')
         check_data(data)
         data = self._transform_market_ticker(data)
         check_data(data)
