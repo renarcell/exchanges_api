@@ -21,9 +21,8 @@ def post(url, data=None):
 
 def get_json(url, method='GET'):
     if method == 'GET':
-        res = get(_base_url + 'markets')
         try:
-            data = get(_base_url + 'markets').json()
+            data = get(url).json()
             return data
         except ValueError as e:
             raise ParseError(e)
