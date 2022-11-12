@@ -8,7 +8,6 @@ from .GateIoExchange import GateIoExchange
 
 def get_all_exchanges():
     return [
-        FtxExchange(),
         MexcExchange(),
         ExmoExchange(),
         BitMartExchange(),

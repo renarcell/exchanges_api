@@ -19,9 +19,9 @@ class BaseUrl:
 def check_data(data):
     if 'result' not in data or 'success' not in data:
         raise ParseError("'result' not in data or 'success' not in data")
-    if not res['success']:
+    if not data['success']:
         raise ParseError("Success is FALSE")
-    if not isinstance(res['result'], list) or len(res['result']) < 2:
+    if not isinstance(data['result'], list) or len(data['result']) < 2:
         raise ServerError("not isinstance(res['result'], list) or len(res['result']) < 2")
     return True
 
@@ -38,7 +38,6 @@ def delete_excess_fields(item):
 
 def etf_filter(data):
     etf = ['3S', '3L', '5S', '5L']
-
     def f(data):
         for d in data:
             chars = d['baseCurrency'][-2:]
@@ -46,4 +45,4 @@ def etf_filter(data):
                 return False
             return True
 
-    return filter(f, data)
+    return list(filter(f, data))

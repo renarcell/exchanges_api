@@ -5,7 +5,7 @@ from .utils import BaseUrl, check_data, delete_excess_fields
 
 class MexcExchange(ExchangeInterface):
     exchange_name = 'MEXC'
-    _base_url = BaseUrl('https://www.mexc.com')
+    _base_url = 'https://www.mexc.com'
 
     def _transform_spot(self, data):
         pass
@@ -40,7 +40,6 @@ class MexcExchange(ExchangeInterface):
 
     def get_spot_markets(self):
         data = get_json(self._base_url + '/open/api/v2/market/ticker')
-        check_data(data)
         data = self._transform_market_ticker(data)
         check_data(data)
         return data

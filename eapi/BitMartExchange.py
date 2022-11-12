@@ -1,6 +1,6 @@
 from .ExchangeInterface import ExchangeInterface
 from .con_utils import get, post
-from .utils import BaseUrl, check_data, delete_excess_fields
+from .utils import check_data, delete_excess_fields
 
 
 class BitMartExchange(ExchangeInterface):
